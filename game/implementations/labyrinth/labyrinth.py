@@ -1,10 +1,11 @@
 from typing import Optional
-from interfaces.cell_object import ICellObject
 
-from implementations.player import Player
-from implementations.labyrinth.cell import DIRECTION_TOP, DIRECTION_LEFT, DIRECTION_RIGHT, DIRECTION_BOTTOM
-from implementations.labyrinth.cell import Cell
-from implementations.labyrinth import objects
+from game.interfaces.icellobject import ICellObject
+
+from game.implementations import Player
+from game.implementations.labyrinth.cell import DIRECTION_TOP, DIRECTION_LEFT, DIRECTION_RIGHT, DIRECTION_BOTTOM
+from game.implementations.labyrinth.cell import Cell
+from game.implementations.labyrinth import objects
 
 class Labyrinth:
     def __init__(self, cells: list):

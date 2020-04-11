@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 
 from typing import List
 
-from implementations.game import Game
-from implementations.player import Player
-from implementations.actions.result import ActionResult
+from game.implementations import Game
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
 class IAction(metaclass=ABCMeta):
     @abstractmethod

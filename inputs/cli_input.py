@@ -1,8 +1,11 @@
 from typing import Tuple, List
-from interfaces.input import IInput
 
-from implementations.game import Game
-from exceptions import InvalidAction
+from inputs.iinput import IInput
+
+from game.implementations import Game
+
+from actions.exceptions import InvalidAction
+from actions.interfaces.iaction import IAction
 
 class CommandLineInput(IInput):
 

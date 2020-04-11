@@ -1,13 +1,13 @@
 from typing import List, Tuple, Optional
 from os import path
 
-from interfaces.actions import IAction
+from actions.interfaces.iaction import IAction
 
-from implementations.game import Game
-from implementations.player import Player
-from implementations.actions.result import ActionResult
+from game.implementations import Game
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
-from exceptions import InvalidActionParams, InvalidAction
+from actions.exceptions import InvalidActionParams, InvalidAction
 
 class SaveGameAction(IAction):
     def do(self, params: List[str], game: Game, player: Player = None) -> ActionResult:

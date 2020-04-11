@@ -1,6 +1,7 @@
 from typing import Tuple
-from implementations.player import Player
-from implementations.actions.result import ActionResult
+
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
 SIDE_TYPE_PASS = 0
 SIDE_TYPE_MONOLITH = 1

@@ -2,9 +2,9 @@
 import json
 from random import randrange
 
-from implementations.labyrinth.factory import LabyrinthFactory
-from implementations.labyrinth.labyrinth import Labyrinth
-from implementations.player import Player
+from game.implementations.labyrinth.factory import LabyrinthFactory
+from game.implementations.labyrinth.labyrinth import Labyrinth
+from game.implementations import Player
 
 class Game:
     def __init__(self):

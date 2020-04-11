@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from typing import List
-from interfaces.cell_object import ICellObject
 
-from implementations.labyrinth.cell import Cell
+from game.interfaces.icellobject import ICellObject
+from game.implementations.labyrinth.cell import Cell
 
 class BaseCellObject(ICellObject):
     def __init__(self, id: str):

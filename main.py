@@ -1,8 +1,8 @@
 
-from implementations.actions import CreateGameAction, ExitGameAction, LoadGameAction, PrintAction
-from implementations.actions import  SaveGameAction, MovePlayerAction, SkipStepAction
-from implementations.game import Game
-from implementations.cli_input import CommandLineInput
+from actions.implementations import CreateGameAction, ExitGameAction, LoadGameAction, PrintAction
+from actions.implementations import  SaveGameAction, MovePlayerAction, SkipStepAction
+from game.implementations import Game
+from inputs.cli_input import CommandLineInput
 
 if __name__ == '__main__':
     actions = {

@@ -1,14 +1,14 @@
 from typing import List, Tuple, Optional
 
-from interfaces.actions import IAction
+from actions.interfaces.iaction import IAction
 
-from implementations.game import Game
-from implementations.player import Player
+from game.implementations import Game
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
-from implementations.labyrinth.cell import DIRECTION_TOP, DIRECTION_LEFT, DIRECTION_RIGHT, DIRECTION_BOTTOM
-from implementations.actions.result import ActionResult
+from actions.exceptions import InvalidAction
 
-from exceptions import InvalidAction
+from game.implementations.labyrinth.cell import DIRECTION_TOP, DIRECTION_LEFT, DIRECTION_RIGHT, DIRECTION_BOTTOM
 
 class PrintAction(IAction):
     def do(self, params: List[str], game: Game, player: Player = None) -> ActionResult:

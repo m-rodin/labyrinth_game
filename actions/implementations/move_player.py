@@ -1,16 +1,15 @@
 from typing import List, Tuple, Optional
 
-from interfaces.actions import IAction
+from actions.interfaces.iaction import IAction
 
-from implementations.game import Game
-from implementations.player import Player
-from implementations.actions.result import ActionResult
+from game.implementations import Game
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
-from implementations.labyrinth.objects import Treasure, Wormhole
-from implementations.labyrinth.cell import DIRECTION_BOTTOM, DIRECTION_LEFT, DIRECTION_TOP, DIRECTION_RIGHT
+from actions.exceptions import InvalidActionParams, InvalidAction
 
-from exceptions import InvalidActionParams, InvalidAction
-
+from game.implementations.labyrinth.objects import Treasure, Wormhole
+from game.implementations.labyrinth.cell import DIRECTION_BOTTOM, DIRECTION_LEFT, DIRECTION_TOP, DIRECTION_RIGHT
 
 class MovePlayerAction(IAction):
     def __init__(self):

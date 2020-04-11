@@ -1,9 +1,10 @@
 from random import shuffle, randrange
-from implementations.labyrinth.cell import Cell
-from implementations.labyrinth.objects import Treasure, WormholeFactory
-from implementations.labyrinth.labyrinth import Labyrinth
 
-from implementations.labyrinth.cell import DIRECTION_LEFT, DIRECTION_TOP, DIRECTION_RIGHT, DIRECTION_BOTTOM
+from game.implementations.labyrinth.cell import Cell
+from game.implementations.labyrinth.objects import Treasure, WormholeFactory
+from game.implementations.labyrinth.labyrinth import Labyrinth
+
+from game.implementations.labyrinth.cell import DIRECTION_LEFT, DIRECTION_TOP, DIRECTION_RIGHT, DIRECTION_BOTTOM
 
 class LabyrinthFactory:
     def __init__(self, size: int = 4):

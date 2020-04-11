@@ -1,4 +1,4 @@
-from interfaces.cell_object import ICellObject
+from game.interfaces.icellobject import ICellObject
 
 class Player:
     def __init__(self, x: int, y: int):

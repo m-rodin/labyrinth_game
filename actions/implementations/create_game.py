@@ -1,12 +1,12 @@
 from typing import List
 
-from interfaces.actions import IAction
+from actions.interfaces.iaction import IAction
 
-from implementations.game import Game
-from implementations.player import Player
-from implementations.actions.result import ActionResult
+from game.implementations import Game
+from game.implementations import Player
+from actions.implementations.result import ActionResult
 
-from exceptions import InvalidActionParams
+from actions.exceptions import InvalidActionParams
 
 class CreateGameAction(IAction):
     def do(self, params: List[str], game: Game, player: Player = None) -> ActionResult:
