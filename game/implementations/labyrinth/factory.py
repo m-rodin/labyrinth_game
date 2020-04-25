@@ -1,7 +1,7 @@
-from random import shuffle, randrange
+from random import shuffle, randrange, choice
 
 from game.implementations.labyrinth.cell import Cell
-from game.implementations.labyrinth.objects import Treasure, WormholeFactory
+from game.implementations.labyrinth.objects import Treasure, WormholeFactory, RiverFactory
 from game.implementations.labyrinth.labyrinth import Labyrinth
 
 from game.implementations.labyrinth.cell import DIRECTION_LEFT, DIRECTION_TOP, DIRECTION_RIGHT, DIRECTION_BOTTOM
@@ -15,10 +15,20 @@ class LabyrinthFactory:
         self.wormholes_count = 5
         self.exits_count = 1
         self.treasure_count = 1
+        self.river_lenght = choice([0, 2, 3, 4])
 
     def create(self) -> Labyrinth:
         cells = self._generateCells()
         labyrinth = Labyrinth(cells)
+
+        river = RiverFactory.getDirect(self.river_lenght)
+        firstCell = self._getRandomCell(cells, labyrinth)
+        riverCells = RiverFactory.getWay(self.river_lenght, firstCell, cells)
+
+        for i in range(self.river_lenght):
+            river[i].placeTo(riverCells[i])
+
+            labyrinth.addObject(river[i])
 
         for i in range(self.treasure_count):
             cell = self._getRandomCell(cells, labyrinth)
@@ -39,6 +49,14 @@ class LabyrinthFactory:
             cell.setAsExit()
 
         return labyrinth
+
+    @staticmethod
+    def load(data):
+        return Labyrinth.load(data)
+
+    @staticmethod
+    def dump(labyrinth: Labyrinth):
+        return labyrinth.dump()
 
     def _getRandomCell(self, cells: list, labyrinth: Labyrinth, is_border=False) -> Cell:
         while True:

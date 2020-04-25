@@ -1,6 +1,7 @@
 from typing import Tuple
 
-from game.implementations import Player
+from game.interfaces.iplayer import IPlayer
+
 from actions.implementations.result import ActionResult
 
 SIDE_TYPE_PASS = 0
@@ -38,7 +39,19 @@ class Cell:
     def canGo(self, direction: str) -> bool:
         return self.directions[direction] in [SIDE_TYPE_PASS, SIDE_TYPE_EXIT]
 
-    def go(self, player: Player, direction: str) -> ActionResult:
+    def getPossibleDirections(self):
+        directions = []
+        if self.canGo(DIRECTION_LEFT):
+            directions.append(DIRECTION_LEFT)
+        if self.canGo(DIRECTION_TOP):
+            directions.append(DIRECTION_TOP)
+        if self.canGo(DIRECTION_RIGHT):
+            directions.append(DIRECTION_RIGHT)
+        if self.canGo(DIRECTION_BOTTOM):
+            directions.append(DIRECTION_BOTTOM)
+        return directions
+
+    def go(self, player: IPlayer, direction: str) -> ActionResult:
         if self.directions[direction] == SIDE_TYPE_WALL:
             return ActionResult.fail("step impossible, wall")
         if self.directions[direction] == SIDE_TYPE_MONOLITH:

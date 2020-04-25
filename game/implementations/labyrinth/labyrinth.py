@@ -2,8 +2,6 @@ from typing import Optional
 
 from game.interfaces.icellobject import ICellObject
 
-from game.implementations import Player
-from game.implementations.labyrinth.cell import DIRECTION_TOP, DIRECTION_LEFT, DIRECTION_RIGHT, DIRECTION_BOTTOM
 from game.implementations.labyrinth.cell import Cell
 from game.implementations.labyrinth import objects
 

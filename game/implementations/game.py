@@ -1,10 +1,11 @@
 
 import json
 from random import randrange
+from typing import List
 
 from game.implementations.labyrinth.factory import LabyrinthFactory
-from game.implementations.labyrinth.labyrinth import Labyrinth
-from game.implementations import Player
+from game.implementations.players.factory import PlayersFactory
+from game.implementations.players.player import Player
 
 class Game:
     def __init__(self):
@@ -19,35 +20,38 @@ class Game:
         self.active_index = (self.active_index + 1) % len(self.players)        
         return self.players[self.active_index]
 
-    def start(self, size: int, players_count: int = 1):
-        factory = LabyrinthFactory(size=size)
+    def drop(self, player):
+        index = self.players.index(player)
+        self.players.remove(player)
 
-        players = []
-        for _ in range(players_count):
-            player = Player(randrange(size), randrange(size))
-            players.append(player)
+        if index < self.active_index:
+            self.active_index -= 1
 
-        self.labyrinth = factory.create()
-        self.players = players
-        self.active_index = 0
+    def hasAcitivePlayers(self):
+        for player in self.players:
+            if isinstance(player, Player):
+                return True
+        return False
+
+    def start(self, labyrinth_factory: LabyrinthFactory, players_factory: PlayersFactory):
+        self.labyrinth = labyrinth_factory.create()
+        self.players = players_factory.create()
+        self.active_index = -1
         self.is_started = True
 
     def load(self, filename: str):
         with open(filename, 'r') as file:
             data = json.load(file)
 
-        labyrinth = Labyrinth.load(data['labyrinth'])
-        players = [Player.load(player, labyrinth.objects) for player in data['players']]
-
-        self.labyrinth = labyrinth
-        self.players = players
+        self.labyrinth = LabyrinthFactory.load(data['labyrinth'])
+        self.players = PlayersFactory.load(data['players'], self.labyrinth.objects)
         self.is_started = data['is_started']
         self.active_index = data['active_index']
 
     def save(self, filename: str):
         data = {
-            'labyrinth': self.labyrinth.dump(),
-            'players': [player.dump() for player in self.players],
+            'labyrinth': LabyrinthFactory.dump(self.labyrinth),
+            'players': PlayersFactory.dump(self.players),
             'is_started': self.is_started,
             'active_index': self.active_index
         }
